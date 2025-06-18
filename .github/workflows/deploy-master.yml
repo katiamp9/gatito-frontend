@@ -2,19 +2,21 @@ name: Deploy master
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
-  angular_deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Setup Node.js 20.x
+      - name: Setup Node.js 16.x
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '16.x'
 
       - name: Install dependencies
         run: npm ci
@@ -33,21 +35,21 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
       - name: Run base httpd container
-        run: docker run -d --name http_base httpd
+        run: docker run -d --name http_base httpd:alpine
 
       - name: Copy Angular build files to container
-        run: docker cp docs/. http_base:/usr/local/apache2/htdocs
+        run: docker cp docs/. http_base:/usr/local/apache2/htdocs/
 
       - name: Commit docker image with SHA tag
-        run: docker commit --change "ENV MODEL_NAME http_base" http_base ${{ secrets.DOCKER_USER }}/gatitofrontend${{ github.sha }}
+        run: docker commit http_base ${{ secrets.DOCKER_USER }}/gatito-frontend:${{ github.sha }}
 
       - name: Tag image as latest
-        run: docker tag ${{ secrets.DOCKER_USER }}/gatitofrontend:${{ github.sha }} ${{ secrets.DOCKER_USER }}/gatitofrontend:latest
+        run: docker tag ${{ secrets.DOCKER_USER }}/gatito-frontend:${{ github.sha }} ${{ secrets.DOCKER_USER }}/gatito-frontend:latest
 
       - name: Push docker images (SHA and latest)
         run: |
-          docker push ${{ secrets.DOCKER_USER }}/gatitofrontend:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_USER }}/gatitofrontend:latest
+          docker push ${{ secrets.DOCKER_USER }}/gatito-frontend:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USER }}/gatito-frontend:latest
 
       - name: Clean up container
         run: docker rm -f http_base || true
