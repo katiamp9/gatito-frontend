@@ -1,0 +1,22 @@
+
+body {
+  background-color: #ffe4c6; /* Fondo gris claro */
+  background-image: radial-gradient(circle, #ffbc8f 2px, transparent 2px);
+  background-size: 20px 20px; /* Tamaño de los puntos */
+  background-position: 0 0;  /* Comienza en la esquina superior izquierda */
+}
+
+/* El contenedor app-root debe ocupar el 100% de la altura */
+app-root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;  
+}
+
+
+/* Fondo para toda la página */
+body {
+  font-family: 'Raleway', sans-serif;
+
+}

@@ -1,0 +1,77 @@
+<div class="home-container">
+
+<div class="logout-container" (click)="logout()">
+  <i class="fas fa-sign-out-alt logout-icon"></i> Logout
+</div>
+
+    <h1>Bienvenido a tu Home</h1>
+  
+    <div class="new-gatito-container">
+      <p class="create-gatito-text" (click)="toggleCreateGatitoForm()">Pulsa aquí para crear un nuevo gatito</p>
+    </div>
+    <div *ngIf="showForm">
+      <div class="new-gatito-section">
+        <h3>¡Crea un nuevo gatito!</h3>
+        <input [(ngModel)]="newGatito.nombre" placeholder="Nombre del gatito">
+        <input [(ngModel)]="newGatito.raza" placeholder="Raza del gatito">
+        <input [(ngModel)]="newGatito.urlFoto" placeholder="URL de la foto del gatito">
+
+        <p class="errorMessage" *ngIf="formErrorMessage" style="color: red; font-size: 14px;">{{ formErrorMessage }}</p>
+        <p class="errorMessage" *ngIf="errorMessage">{{ errorMessage }}</p>
+        <button (click)="postNewGatito()">Crear Gatito</button>
+      </div>
+    </div>
+
+    <div class="search-container">
+      <input [(ngModel)]="terminoBusqueda" placeholder="Buscar gatitos">
+      <button (click)="buscarGatitos()">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+    
+    
+  
+    <div class="gatitos-list">
+      <div *ngFor="let gatito of gatitos" class="gatito-card">
+        <img [src]="gatito.urlFoto" alt="Gatito" class="gatito-img" />
+        <div class="gatito-info">
+
+          <h4>{{ gatito.nombre }}</h4>
+          <p>{{ gatito.raza }}</p>
+          <span class="posted-by">Publicado por: {{ gatito.postedBy.username }}</span>
+          <div class="reacciones">
+            <div *ngFor="let reaction of reactions">
+              <button class="reaction-button" (click)="postReaction(gatito.id, reaction.id)">
+                {{ reaction.description }} 
+                <span *ngIf="gatitoReacciones[gatito.id] && gatitoReacciones[gatito.id][reaction.description]">
+                  ({{ gatitoReacciones[gatito.id][reaction.description] }})
+                </span>
+              </button>
+            </div>
+          </div>
+          
+          <span class="ver-comentarios" (click)="toggleComentarios(gatito.id)">
+            Ver comentarios
+          </span><br>
+          <i *ngIf="gatito.postedBy.id === currentUserId" 
+            class="fa fa-trash delete-icon" 
+            (click)="confirmDeleteGatito(gatito.id)">
+          </i>
+          <div *ngIf="selectedGatitoId === gatito.id">
+            
+            <div *ngIf="gatito.comentarios.length === 0">
+              <p>¡Este gatito no tiene comentarios!</p>
+            </div>
+            <div *ngFor="let comentario of gatito.comentarios">
+              <p><strong>{{comentario.nombreUsuario}}:</strong> {{comentario.contenido}}</p>
+            </div>
+            <div class="comentario-section">
+              <input [(ngModel)]="gatito.nuevoComentario" placeholder="Escribe un comentario">
+              <i class="fas fa-comment-alt comment-icon" (click)="postComentario(gatito.id, gatito.nuevoComentario)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,300 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  h1{
+    color: #ff6600;
+  }
+
+  .new-gatito-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f8dd9e;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(255, 165, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.create-gatito-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff6600;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.create-gatito-text:hover {
+    color: #e65c00;   /* Color al pasar el ratón */
+    transform: scale(1.1);  /* Efecto de aumentar el tamaño */
+}
+  .new-gatito-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f8dd9e;  /* Un color más suave para el fondo */
+    border-radius: 15px;         /* Borde redondeado más pronunciado */
+    box-shadow: 0 5px 15px rgba(255, 165, 0, 0.3);  /* Sombra más suave y con color de tema */
+    border: 2px solid #f8dd9e;  /* Borde más delgado */
+    width: 100%;                 /* Aseguramos que ocupe todo el ancho disponible */
+    max-width: 600px;            /* Limitar el tamaño máximo */
+    margin: 20px auto;           /* Centrado con márgenes */
+}
+
+  
+.new-gatito-section input {
+  margin: 15px 0;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  border: 2px solid #ff6600;  /* Bordes con el mismo color del tema */
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+.new-gatito-section input:focus {
+  border-color: #e65c00;  /* Color de borde cuando se enfoca el campo */
+  outline: none;
+  box-shadow: 0 0 8px rgba(255, 102, 0, 0.6);
+}
+  
+.new-gatito-section button {
+  background-color: #ff6600;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.new-gatito-section button:hover {
+  background-color: #e65c00;
+}
+
+.new-gatito-section button:active {
+  background-color: #cc5200;
+}
+  
+    /* Contenedor de las tarjetas de los gatitos */
+.gatitos-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+  
+  .gatito-card {
+    background-color: #f3ac69b4;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(234, 160, 95, 0.495);
+    padding: 20px;
+    width: flex;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+    transition: 1s;
+  }
+  .gatito-card:hover{
+    box-shadow: 0 5px 10px rgba(172, 88, 19, 0.495);
+  }
+  
+  .gatito-img { 
+    width: 100%;
+    min-height: 300px;
+    max-height: 300px;
+    min-width: 300px;
+    max-width: 300px;
+    border-radius: 10px;
+  }
+  
+  .gatito-info h4 {
+    margin-top: 15px;
+    font-size: 18px;
+  }
+  
+  .gatito-info p {
+    font-size: 14px;
+    color: #777;
+  }
+  .logout-container {
+    position: absolute;
+    top: 20px; /* Ajusta la distancia desde la parte superior */
+    right: 20px; /* Ajusta la distancia desde el borde derecho */
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff3300;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.logout-container:hover {
+    color: #e62e00; /* Color más oscuro al hacer hover */
+    transform: scale(1.05); /* Efecto de aumento al hacer hover */
+}
+
+.logout-container:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(255, 68, 68, 0.6);
+}
+
+.logout-container .logout-icon {
+    margin-right: 10px; /* Espacio entre el ícono y el texto */
+    font-size: 18px; /* Tamaño del ícono */
+}
+
+.logout-container:active {
+    transform: scale(0.95); /* Efecto de reducción al hacer click */
+}
+
+  
+  .gatitos-list h3 {
+    text-align: center;
+    margin-bottom: 20px;  /* Espacio debajo del título */
+    font-size: 24px;      /* Ajusta el tamaño de la fuente si es necesario */
+    color: #FF6600;
+        /* Color del texto, puedes ajustarlo */
+  }
+  .posted-by {
+    font-size: 1rem;
+    color: #777;
+    font-style: italic;
+  }
+
+  .reaction-button {
+    background-color: #ff9900; /* Naranja como color de fondo */
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin: 5px 0;
+  }
+  .reaction-button:hover {
+    background-color: #ff6600; /* Un tono más oscuro para el hover */
+  }
+
+  .ver-comentarios {
+    font-weight: bold;
+    color: #c27503;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 5px;
+  }
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  textarea:focus {
+    outline: none;
+    border-color: #ff9900; /* Tienes el mismo color de los botones cuando está en foco */
+  }
+  .delete-icon {
+    font-size: 24px;
+    color: #ad3434;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0; /* Elimina el padding */
+    display: flex; /* Asegura que el icono se comporta como texto */
+    margin-top: 10px;
+    transition: 1s;
+  }
+  
+  .delete-icon:hover {
+    color: #761212;
+    transform: scale(1.05);
+  }
+  
+  .delete-icon:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(255, 68, 68, 0.6);
+  }
+  
+  .delete-icon:active {
+    transform: scale(0.95);
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+  }
+  
+  .search-container input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 2px solid #ff6600;
+    width: 100%;
+    max-width: 400px;
+    outline: none;
+  }
+  
+  .search-container button {
+    background-color: #ff6600;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+  }
+  
+  .search-container button:hover {
+    background-color: #e65c00;
+  }
+  
+  .search-container button i {
+    color: white;
+    font-size: 18px; /* Tamaño adecuado para la lupa */
+  }
+  .errorMessage{
+    color: #e65c00;
+    font-weight: bold;
+  }
+  .comentario-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .comentario-section input {
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .comment-icon {
+    font-size: 24px; /* Tamaño del ícono */
+    color: #777; /* Color predeterminado */
+    cursor: pointer; /* Indicamos que el ícono es clickeable */
+    transition: color 0.3s; /* Transición suave cuando pasa el mouse */
+  }
+  
+  .comment-icon:hover {
+    color: #ff6600; /* Color del ícono cuando se pasa el mouse */
+  }

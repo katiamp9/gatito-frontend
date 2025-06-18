@@ -1,0 +1,93 @@
+/* Contenedor general de la página */
+.signup-page {
+  display: flex;
+  justify-content: center;   /* Centra el contenido horizontalmente */
+  align-items: center;       /* Centra el contenido verticalmente */
+  min-height: 100vh;         /* Asegura que ocupe toda la altura de la pantalla */
+  background-color: #f1f1f1; /* Color de fondo suave */
+  padding: 20px;
+}
+
+/* Contenedor del formulario de signup */
+.signup-container {
+  background-color: rgba(255, 233, 207, 0.9); /* Fondo blanco con algo de transparencia */
+  border-radius: 15px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  width: 100%;
+  max-width: 450px; /* Establece el ancho máximo del formulario */
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  backdrop-filter: blur(10px); /* Efecto de desenfoque */
+}
+
+/* Título del formulario */
+h2 {
+  color: #FF7F32; /* Naranja calico */
+  font-weight: 600;
+  font-size: 24px;
+  margin-bottom: 1rem;
+}
+
+/* Estilo de los inputs */
+input[type="text"], input[type="password"], input[type="email"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 2px solid #ddd; /* Borde gris suave */
+  border-radius: 10px; /* Bordes redondeados */
+  background-color: #f9f9f9; /* Fondo claro */
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Efecto de enfoque */
+input[type="text"]:focus, input[type="password"]:focus {
+  border-color: #FF7F32; /* Borde naranja */
+  background-color: rgba(255, 127, 50, 0.1); /* Fondo suave naranja */
+}
+
+/* Estilo del botón */
+button {
+  background-color: #FF7F32; /* Naranja (gatito calico) */
+  color: #FFFFFF; /* Texto blanco */
+  border: none;
+  border-radius: 25px; /* Bordes redondeados */
+  padding: 12px 25px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+
+/* Efecto hover del botón */
+button:hover {
+  background-color: #e56a2a; /* Naranja más oscuro */
+}
+
+/* Enlace para el registro (signup) */
+p {
+  margin-top: 10px;
+}
+
+p a {
+  color: #FF7F32;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+/* Efecto hover en el enlace */
+p a:hover {
+  color: #e56a2a; /* Naranja más oscuro en hover */
+}
+
+/* Mensaje de error */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
