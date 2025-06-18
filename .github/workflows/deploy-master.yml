@@ -1,0 +1,53 @@
+name: Deploy master
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  angular_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js 20.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Angular app into docs/
+        run: |
+          npm run build -- --output-path=docs
+          # Si tus archivos quedaron en docs/browser, mueve aquí para raíz:
+          if [ -d docs/browser ]; then mv docs/browser/* docs/; fi
+
+      - name: Docker login
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+      - name: Run base httpd container
+        run: docker run -d --name http_base httpd
+
+      - name: Copy Angular build files to container
+        run: docker cp docs/. http_base:/usr/local/apache2/htdocs
+
+      - name: Commit docker image with SHA tag
+        run: docker commit --change "ENV MODEL_NAME http_base" http_base ${{ secrets.DOCKER_USER }}/gatitofrontend${{ github.sha }}
+
+      - name: Tag image as latest
+        run: docker tag ${{ secrets.DOCKER_USER }}/gatitofrontend:${{ github.sha }} ${{ secrets.DOCKER_USER }}/gatitofrontend:latest
+
+      - name: Push docker images (SHA and latest)
+        run: |
+          docker push ${{ secrets.DOCKER_USER }}/gatitofrontend:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USER }}/gatitofrontend:latest
+
+      - name: Clean up container
+        run: docker rm -f http_base || true
